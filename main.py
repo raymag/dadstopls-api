@@ -1,5 +1,6 @@
-from textblob import TextBlob, translate
+from textblob import TextBlob
 from flask import Flask, request
+import os
 
 app = Flask(__name__)
 
@@ -16,4 +17,4 @@ def translate():
     return str(translation)
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", debug=True, port=5000)
+    app.run(host="0.0.0.0", debug=os.environ.get('DEV'), port=int(os.environ.get('PORT', '5000'))
